@@ -3,11 +3,16 @@
 
 (defn get-lists []
   (let [file-contents (slurp "src/day1/input.txt")
+        ; Split contents by newline
         file-contents-newline-split (str/split file-contents #"\n")
+        ; Split each line by the spaces between to create tuples of strings
         file-contents-left-right-tuples (map #(str/split %1 #"\s+") file-contents-newline-split)
+        ; Parse the string tuples into number tuples
         file-contents-left-right-tuples-parsed (map (fn [[i j]] [(Integer/parseInt i) (Integer/parseInt j)])
                                                     file-contents-left-right-tuples)
+        ; Extract left column
         left-list (mapv first file-contents-left-right-tuples-parsed)
+        ; Extract right column
         right-list (mapv second file-contents-left-right-tuples-parsed)]
     [left-list right-list]))
 
@@ -29,22 +34,12 @@
 (defn main-1
   "The solution for https://adventofcode.com/2024/day/1 part 1"
   []
-  ; Read the txt file from src/day1/input.txt
-  ; Split the two lists into a left and right column
-  ; Sort the left and right lists
-  ; Get the distance between the same indexes in two lists after they are sorted
-  ; Return the result of all of those values added up
   (let [[left-list right-list] (get-lists)]
     (process-lists-1 left-list right-list)))
 
 (defn main-2
   "The solution for https://adventofcode.com/2024/day/1 part 2"
   []
-  ; Read the txt file from src/day1/input.txt
-  ; Split the two lists into a left and right column
-  ; Sort the left and right lists
-  ; Get the distance between the same indexes in two lists after they are sorted
-  ; Return the result of all of those values added up
   (let [[left-list right-list] (get-lists)]
     (process-lists-2 left-list right-list)))
 
